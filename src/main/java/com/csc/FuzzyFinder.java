@@ -2,6 +2,7 @@ package com.csc;
 
 import java.util.ArrayList;
 
+
 public class FuzzyFinder {
   // Your code goes here!
 
@@ -23,6 +24,28 @@ public class FuzzyFinder {
     
     System.out.printf("The index of the golden fuzzy in a sorted list using linear search: %d\n",linear_index_sorted);
     System.out.printf("The index of the golden fuzzy in a random list using binary search: %d",binary_index_random);
+
+    int worst_case_iterations = linear_worst_case(fuzzies_random);
+
+    System.out.printf("\nThe worst case scenario running time for linear seach occurs when the golden fuzzy is at the very end of the list. In this case, it would be the %dth index of the list. This means it would take %d iterations for the program to run. However, it depends solely on the length of the fuzzies list.",worst_case_iterations, worst_case_iterations);
+
+    int worst_case_binary_iterations = binary_worst_case(fuzzies_random);
+    System.out.printf("\nThe worst case scenario running time for binary seach occurs when keeps halving the size of the interval until the golden fuzzy is the only element left. In this case it takes %d iterations. Even when the list is unsorted, binary is much quicker than the linear method because it follows a logrithmic rate.", worst_case_binary_iterations);
+  }
+
+    
+  public static int linear_worst_case(ArrayList<Fuzzy> fuzzies_random)
+  {
+    int worst_case_iterations= fuzzies_random.size();
+    return worst_case_iterations;
+  }
+
+  public static int binary_worst_case(ArrayList<Fuzzy> fuzzies_random)
+  {
+    double log_result = Math.log(fuzzies_random.size())/Math.log(2);
+    int worst_case_binary_iterations = (int) log_result +1;
+
+    return worst_case_binary_iterations;
   }
 
   public static int linear_search(ArrayList<Fuzzy> fuzzies_random)
@@ -95,7 +118,6 @@ public class FuzzyFinder {
 
   }
 
-
   public static int binary_search_index_random(ArrayList<Fuzzy> fuzzies_random)
   {
     int right_limit=fuzzies_random.size()-1;
@@ -125,5 +147,6 @@ public class FuzzyFinder {
     return -1;
 
   }
+  
 }
 
